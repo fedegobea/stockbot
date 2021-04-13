@@ -6,13 +6,13 @@ class StockPrice:
   ticker: str
   daily_close_prices: list[float]
 
-  def _stock_closes(self: StockPrice) -> list[float]:
+  def _stock_closes(self: StockPrice, periods:int) -> list[float]:
     stock_info = web.DataReader(self.ticker,'stooq')
-    return stock_info['Close'].to_list()
+    return stock_info['Close'].to_list()[-periods:]
 
-  def __init__(self: StockPrice, ticker: str) -> None:
+  def __init__(self: StockPrice, ticker: str, periods:int=20) -> None:
     self.ticker = ticker
-    self.daily_close_prices = self._stock_closes()
+    self.daily_close_prices = self._stock_closes(periods)
 
   def __repr__(self: StockPrice) -> str:
     prices = self.daily_close_prices
