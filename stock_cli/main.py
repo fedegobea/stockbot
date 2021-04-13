@@ -3,6 +3,7 @@ from .price import get_stock_price
 
 
 print('Hola')
-input('Que precio de accion queres conseguir?')
+ticker = input('El precio de que accion queres obtener?')
+print(get_stock_price(ticker))
 
 
